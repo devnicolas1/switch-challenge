@@ -1,0 +1,97 @@
+.checkbox {
+  visibility: hidden;
+}
+  
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  width: 9em;
+  height: 3.4375em;
+  border-radius: 6.25em;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.dark {
+  background: #323344;
+  border: 0.625em solid #414252;
+}
+
+.dark-grid, .dark-list {
+  color: #fdfbf7;
+}
+
+.light {
+  background: #fdfbf7;
+  border: 0.625em solid #ffffff
+}
+
+.light-grid, .light-list {
+  color: #585858;
+}
+
+.label .button {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 41px;
+  height: 41px;
+  border-radius: 45px;
+  transition: 0.2s;
+  border: 3px solid;
+}
+  
+.grid {
+  margin-left: 12px;
+}
+
+.list {
+  margin-right: 12px;
+}
+
+.checkbox:checked + .label .button {
+  left: calc(100% - 4px);
+  transform: translateX(-100%);
+}
+
+.label:active .button {
+  width: 30px;
+}
+
+.button.red {
+  background-color: #e04d55;
+  border-color: #943e43;
+  box-shadow: 0px 0px 20px 1px #e04d54b6;
+}
+
+.button.blue {
+  background-color: #476bef;
+  border-color: #3d54a6;
+  box-shadow: 0px 0px 20px 1px #476bef57;
+}
+
+.label.disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.label .button.disabled {
+  background-color: #c4c4c4;
+  border-color: #a7a7a7;
+  box-shadow: none;
+}
+
+.label .grid,
+.checkbox:checked + .label .list {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.checkbox:checked + .label .grid,
+.checkbox + .label .list {
+  opacity: 1;
+  transition: opacity 0.2s;
+}

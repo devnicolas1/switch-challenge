@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Switch Challenge</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body id="root" style="background-color: #1f2023;">
+    <script type="text/babel">
+      function Switch(props) {
+        const disabled = props.disabled ? "disabled" : "";
+        const [state, setState] = React.useState(props.state === "grid" ? "grid" : "list");
+        const id = "switch-" + Math.floor(Math.random() * 10000);
+        const handleSwitchChange = (event) => {
+          setState(event.target.checked ? "list" : "grid");
+        };
+        return (
+          <>
+            <input
+            className="checkbox"
+            id={id}
+            type="checkbox"
+            checked={state === "list"}
+            disabled={disabled}
+            onChange={handleSwitchChange}
+            />
+            <label
+            className={`label ${disabled} ${props.mode}`}
+            htmlFor={id}
+            >
+              <span className={`button ${props.color} ${disabled}`} />
+              <i id="gridIcon" className={`icon fa fa-th-large fa-2x grid ${props.mode}-grid`}></i>
+              <i id="listIcon" className={`fa fa-bars fa-2x list ${props.mode}-list`}></i>
+            </label>
+          </>
+        );
+      }
+      function Main() {
+        return (
+          <>
+          <div>
+            <Switch color="red" disabled={false} state="grid" mode="light"/>
+          </div>
+          <div>
+            <Switch color="red" disabled={false} state="list" mode="dark"/>
+          </div>
+          <div>
+            <Switch color="blue" disabled={false} state="grid" mode="light"/>
+          </div>
+          <div>
+            <Switch color="blue" disabled={false} state="list" mode="dark"/>
+          </div>
+          <div>
+            <Switch color="blue" disabled={true} state="grid" mode="dark"/>
+          </div>
+          </>
+        )
+      }
+
+      const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+      root.render(<Main />);
+    </script>
+  </body>
+</html>
